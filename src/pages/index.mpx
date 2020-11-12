@@ -1,0 +1,25 @@
+<template>
+  <list></list>
+</template>
+
+<script>
+import { createPage } from '@mpxjs/core'
+import Store from '../store'
+
+createPage({
+  onLoad () {
+    this.getOneWebData()
+  },
+  methods: {
+    ...Store.mapActions(['getOneWebData'])
+  }
+})
+</script>
+
+<script type="application/json">
+  {
+    "usingComponents": {
+      "list": "../components/list"
+    }
+  }
+</script>
