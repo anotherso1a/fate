@@ -11,14 +11,15 @@ createApp({
 })
 </script>
 
-<style>
+<style lang="stylus">
   /*此处编写全局样式*/
 </style>
 
 <script type="application/json">
   {
     "pages": [
-      "./pages/index"
+      "./pages/index",
+      "./pages/webview"
     ]
   }
 </script>

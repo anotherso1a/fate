@@ -1,0 +1,27 @@
+<template>
+  <view class="cardContainer">
+    <slot></slot>
+  </view>
+</template>
+
+<script>
+  import { createComponent } from '@mpxjs/core'
+  createComponent({
+  
+  })
+</script>
+
+<style lang="stylus">
+  .cardContainer
+    padding 36rpx
+    box-sizing border-box
+    background-color #fff
+    box-shadow $box-shadow-important
+</style>
+
+<script name="json">
+  module.exports = {
+    component: true,
+    usingComponents: {}
+  }
+</script>

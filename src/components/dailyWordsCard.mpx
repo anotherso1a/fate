@@ -1,0 +1,132 @@
+<template>
+  <view
+    class="dailyCardContain"
+    bindtap="handlerOpen"
+    bindlongtap="handlerNext"
+    bindtouchend="handlerTouchEnd"
+    wx:class="{{{isOpened}}}"
+    wx:if="{{dailyData}}"
+  >
+    <card>
+      <view class="pictureItem">
+        <view class="pic" style="background-image: url({{dailyData.image}})"></view>
+        <view class="date">{{dailyData.date}}</view>
+        <view class="words">{{dailyData.words}}</view>
+        <view class="from" catchtap="handlerToOne">from: 「ONE·一个」</view>
+      </view>
+    </card>
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+import Store from '../store'
+createComponent({
+  data: {
+    currentIndex: 0,
+    isLongPressed: false,
+    isOpened: false
+  },
+  computed: {
+    ...Store.mapState(['words']),
+    dailyDataList () {
+      return this.words
+    },
+    dailyData () {
+      let len = this.dailyDataList.length
+      let index = this.currentIndex % len
+      return this.dailyDataList[index]
+    }
+  },
+  methods: {
+    handlerOpen () {
+      if (this.isLongPressed) return
+      this.isOpened = !this.isOpened
+    },
+    handlerNext () {
+      this.isLongPressed = true
+      this.currentIndex++
+    },
+    handlerTouchEnd () {
+      if (this.isLongPressed) {
+        setTimeout(() => {
+          this.isLongPressed = false
+        }, 100)
+      }
+    },
+    handlerToOne () {
+      wx.navigateTo({
+        url: `/pages/webview?url=${encodeURIComponent('https://wufazhuce.com')}`
+      })
+    }
+  }
+})
+</script>
+
+<style lang="stylus">
+page 
+  background-color $color-light-grey-bg
+.dailyCardContain
+  // position absolute
+  // top 0
+  // left 50%
+  // transform translateX(-50%)
+  width 750rpx
+  &.isOpened
+    .pictureItem
+      // height auto
+      max-height 1000rpx
+      .pic
+        margin-top 0rpx
+        width 100%
+        // background-size contain
+      .date
+        opacity 1
+      .words
+        opacity 1
+      .from
+        opacity 1
+.pictureItem
+  width 100%
+  // height 477rpx
+  max-height 605rpx
+  display flex
+  flex-direction column
+  align-items center
+  transition all 0.5s ease
+  .pic
+    margin-top -36rpx
+    width 113%
+    height 0
+    background-size cover
+    // background-size contain
+    background-position center
+    background-repeat no-repeat
+    padding-top 100%
+    transition all 0.5s ease
+  .date
+    opacity 0
+    width 100%
+    font-size 24rpx
+    color $color-light-grey
+    transition all 0.5s ease
+  .words
+    margin 18rpx 0
+    opacity 0
+    width 100%
+    font-size 32rpx
+    transition all 0.5s ease
+  .from
+    opacity 0
+    width 100%
+    text-align right
+</style>
+
+<script name="json">
+module.exports = {
+  component: true,
+  usingComponents: {
+    card: './ui/card'
+  }
+}
+</script>

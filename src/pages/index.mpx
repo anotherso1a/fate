@@ -1,5 +1,6 @@
 <template>
-  <list></list>
+  <!-- <navigator></navigator> -->
+  <dailyWords></dailyWords>
 </template>
 
 <script>
@@ -16,10 +17,14 @@ createPage({
 })
 </script>
 
-<script type="application/json">
-  {
-    "usingComponents": {
-      "list": "../components/list"
-    }
+<script name="json">
+module.exports = {
+  navigationBarBackgroundColor: '#ffffff',
+  navigationBarTextStyle: 'black',
+  navigationBarTitleText: '首页',
+  usingComponents: {
+    dailyWords: '../components/dailyWordsCard',
+    navigator: '../components/navigator'
   }
+}
 </script>

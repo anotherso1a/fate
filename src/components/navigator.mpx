@@ -1,0 +1,22 @@
+<template>
+  <view class="navigatorContainer"></view>
+</template>
+
+<script>
+  import { createComponent } from '@mpxjs/core'
+  createComponent({
+  
+  })
+</script>
+
+<style lang="stylus">
+  .navigatorContainer
+    height 160rpx
+</style>
+
+<script name="json">
+  module.exports = {
+    component: true,
+    usingComponents: {}
+  }
+</script>

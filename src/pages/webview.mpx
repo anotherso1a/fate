@@ -1,0 +1,45 @@
+<template>
+  <web-view src="{{linkUrl}}" bindmessage="onmessage" bindload="handleLoad" binderror="handleError"></web-view>
+</template>
+
+<script>
+import { createPage } from '@mpxjs/core'
+
+createPage({
+  data: {
+    linkUrl: '',
+    shareInfo: {}
+  },
+  methods: {
+    onmessage (e) {
+      if (e.detail.data && e.detail.data instanceof Array) {
+        let shareItem = null
+        e.detail.data.forEach(item => {
+          if (item.type === 'share') {
+            shareItem = item
+          }
+        })
+        // { type: 'share', data: {} }
+        // 如果不存在，不赋值，以免覆盖之前设的
+        if (shareItem) {
+          this.shareInfo = shareItem
+          if (shareItem.data) {
+            this.shareInfo = shareItem.data
+          }
+        }
+      }
+    },
+    handleLoad () {
+      console.log('handleLoad')
+    },
+    handleError () {
+      console.log('handleError')
+    }
+  },
+  onLoad (query) {
+    if (query.url) {
+      this.linkUrl = decodeURIComponent(query.url)
+    }
+  }
+})
+</script>

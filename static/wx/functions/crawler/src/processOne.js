@@ -22,6 +22,7 @@ function updateTodayWords(){
       }
     }).toArray()
     TODAY_WORDS = result
+    TODAY = getToday()
     return TODAY_WORDS
   })
 }
