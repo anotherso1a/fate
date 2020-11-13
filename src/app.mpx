@@ -3,7 +3,7 @@ import './common/js/preScript'
 import { createApp } from '@mpxjs/core'
 
 createApp({
-  onLaunch () {
+  onLaunch (){
     wx.cloud.init({
       env: 'fate-1glfdct3f47f3f5f'
     })
@@ -19,6 +19,7 @@ createApp({
   {
     "pages": [
       "./pages/index",
+      "./pages/yi",
       "./pages/webview"
     ]
   }

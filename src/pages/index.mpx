@@ -1,6 +1,7 @@
 <template>
   <!-- <navigator></navigator> -->
   <dailyWords></dailyWords>
+  <button bindtap="handlerToCalc">测算</button>
 </template>
 
 <script>
@@ -8,11 +9,16 @@ import { createPage } from '@mpxjs/core'
 import Store from '../store'
 
 createPage({
-  onLoad () {
+  onLoad (){
     this.getOneWebData()
   },
   methods: {
-    ...Store.mapActions(['getOneWebData'])
+    ...Store.mapActions(['getOneWebData']),
+    handlerToCalc(){
+      wx.navigateTo({
+        url: '/pages/yi'
+      })
+    }
   }
 })
 </script>

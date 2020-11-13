@@ -1,0 +1,74 @@
+<template>
+  <view class="yiContainer">
+    <button bindtap="handlerStart">测算</button>
+    <view class="bahuaPannel">
+      <text class="baguaItem" wx:for="{{topList}}" wx:key="index">{{item}}</text>
+      <view></view>
+      <text class="baguaItem" wx:for="{{bottomList}}" wx:key="index">{{item}}</text>
+    </view>
+    <view wx:for="{{YI}}" wx:key="index">{{item}}</view>
+  </view>
+</template>
+
+<script>
+  import { createComponent } from '@mpxjs/core'
+  import {BAGUA} from '@/common/const'
+  import Store from '../../store'
+  createComponent({
+    data: {
+      topList: ['', '', '', '', '', ''],
+      bottomList: ['', '', '', '', '', ''],
+      calcIndex: 8
+    },
+    computed: {
+      ...Store.mapState(['YI']),
+      isCalculated (){
+        return this.calcIndex >= this.topList.length
+      }
+    },
+    watch: {
+      calcIndex (){
+        setTimeout(() => this.handlerCalculate(), 500)
+      },
+      isCalculated(v){
+        if (v) {
+          let requestParam = this.topList.map((e, i) => {
+            return `${this.bottomList[i]}下${e}上`
+          })
+          this.calculateYI(requestParam)
+        }
+      }
+    },
+    methods: {
+      ...Store.mapActions(['calculateYI']),
+      handlerStart(){
+        this.topList = ['', '', '', '', '', '']
+        this.bottomList = ['', '', '', '', '', '']
+        this.calcIndex = 0
+      },
+      handlerCalculate (){
+        if (this.isCalculated) return
+        let resTop = BAGUA[Math.floor(Math.random() * BAGUA.length)]
+        let resBottom = BAGUA[Math.floor(Math.random() * BAGUA.length)]
+        
+        this.topList[this.calcIndex] = resTop.text
+        this.bottomList[this.calcIndex] = resBottom.text
+
+        this.$forceUpdate()
+
+        this.calcIndex++
+      }
+    }
+  })
+</script>
+
+<style lang="stylus">
+  
+</style>
+
+<script name="json">
+  module.exports = {
+    component: true,
+    usingComponents: {}
+  }
+</script>

@@ -11,7 +11,7 @@ createPage({
     shareInfo: {}
   },
   methods: {
-    onmessage (e) {
+    onmessage (e){
       if (e.detail.data && e.detail.data instanceof Array) {
         let shareItem = null
         e.detail.data.forEach(item => {
@@ -29,14 +29,14 @@ createPage({
         }
       }
     },
-    handleLoad () {
+    handleLoad (){
       console.log('handleLoad')
     },
-    handleError () {
+    handleError (){
       console.log('handleError')
     }
   },
-  onLoad (query) {
+  onLoad (query){
     if (query.url) {
       this.linkUrl = decodeURIComponent(query.url)
     }

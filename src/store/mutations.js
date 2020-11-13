@@ -1,5 +1,8 @@
 export default {
-  setDailyWords (state, payload) {
+  setDailyWords (state, payload){
     state.words = payload
+  },
+  setYI(state, payload){
+    state.YI = payload
   }
 }

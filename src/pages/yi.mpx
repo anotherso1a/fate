@@ -1,0 +1,22 @@
+<template>
+<yi></yi>
+</template>
+
+<script>
+  import { createPage } from '@mpxjs/core'
+  createPage({
+  
+  })
+</script>
+
+<style lang="stylus">
+  
+</style>
+
+<script name="json">
+  module.exports = {
+    usingComponents: {
+      yi: '../components/yi'
+    }
+  }
+</script>

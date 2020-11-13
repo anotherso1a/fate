@@ -29,32 +29,32 @@ createComponent({
   },
   computed: {
     ...Store.mapState(['words']),
-    dailyDataList () {
+    dailyDataList (){
       return this.words
     },
-    dailyData () {
+    dailyData (){
       let len = this.dailyDataList.length
       let index = this.currentIndex % len
       return this.dailyDataList[index]
     }
   },
   methods: {
-    handlerOpen () {
+    handlerOpen (){
       if (this.isLongPressed) return
       this.isOpened = !this.isOpened
     },
-    handlerNext () {
+    handlerNext (){
       this.isLongPressed = true
       this.currentIndex++
     },
-    handlerTouchEnd () {
+    handlerTouchEnd (){
       if (this.isLongPressed) {
         setTimeout(() => {
           this.isLongPressed = false
         }, 100)
       }
     },
-    handlerToOne () {
+    handlerToOne (){
       wx.navigateTo({
         url: `/pages/webview?url=${encodeURIComponent('https://wufazhuce.com')}`
       })

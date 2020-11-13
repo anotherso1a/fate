@@ -1,3 +1,4 @@
 export default {
-  words: []
+  words: [],
+  YI: []
 }
