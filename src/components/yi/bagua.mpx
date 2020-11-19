@@ -1,0 +1,112 @@
+<template>
+  <view class="baguaContainer">
+    <view class="backContain" style="{{rotateOutStyle}}"></view>
+    <view class="innerWrapper">
+      <view class="innerContain" style="{{rotateInnerStyle}}" bindtap="handlerStart"></view>
+    </view>
+  </view>
+</template>
+
+<script>
+import { createComponent } from '@mpxjs/core'
+import { BAGUA } from '../../common/const'
+import Store from '../../store'
+createComponent({
+  data: {
+    topList: ['', '', '', '', '', ''],
+    bottomList: ['', '', '', '', '', ''],
+    calcIndex: 8, // 已经算出来的卦
+    rotateOut: 0, // 外层转动角度
+    rotateInner: 0 // 内层转动角度
+  },
+  computed: {
+    isCalculated (){
+      return this.calcIndex >= this.topList.length
+    },
+    rotateOutStyle(){
+      return `transform: rotate(${this.rotateOut}deg)`
+    },
+    rotateInnerStyle(){
+      return `transform: rotate(${this.rotateInner}deg)`
+    },
+    isReverse(){
+      return this.calcIndex % 2
+    }
+  },
+  watch: {
+    calcIndex (){
+      if (this.isCalculated) return
+      this.handlerRotate()
+    },
+    isCalculated(v){
+      if (v) {
+        console.log(this.topList)
+        let requestParam = this.topList.map((e, i) => {
+          return `${this.bottomList[i]}下${e}上`
+        })
+        this.calculateYI(requestParam).then(console.log)
+      }
+    }
+  },
+  methods: {
+    ...Store.mapActions(['calculateYI']),
+    start(){
+      this.handlerStart()
+    },
+    handlerStart(){
+      this.topList = ['', '', '', '', '', '']
+      this.bottomList = ['', '', '', '', '', '']
+      this.calcIndex = 0
+    },
+    handlerRotate(){
+      let out = BAGUA[Math.floor(Math.random() * BAGUA.length)]
+      let inner = BAGUA[Math.floor(Math.random() * BAGUA.length)]
+      // 填充list
+      this.topList[this.calcIndex] = out.text
+      this.bottomList[this.calcIndex] = inner.text
+
+      let outDeg = out.deg
+      let innerDeg = inner.deg
+      if (this.isReverse) {
+        this.rotateOut -= this.rotateOut % 360 + 720 - outDeg
+        this.rotateInner += 360 - this.rotateOut % 360 + innerDeg
+      } else {
+        this.rotateOut += 360 - this.rotateOut % 360 + outDeg
+        this.rotateInner -= this.rotateOut % 360 + 720 - innerDeg
+      }
+      setTimeout(() => {this.calcIndex++}, 3000)
+    }
+  }
+})
+</script>
+
+<style lang="stylus">
+.baguaContainer
+  margin-top 100rpx
+  position relative
+  wh(600rpx, 600rpx)
+  .backContain
+    wh(600rpx, 600rpx)
+    background-size 100% 100%
+    background-image url('https://dpubstatic.udache.com/static/dpubimg/ed8b430a-64ff-42cc-bcb2-2bd2c12d0afe.png')
+    transition all 3s cubic-bezier(0.59, 0.01, 0.05, 1.01)
+  .innerWrapper
+    position absolute
+    top 0
+    left 0
+    flex-center()
+    wh(100%, 100%)
+    .innerContain
+      wh(200rpx, 200rpx)
+      background-size 100% 100%
+      background-image url('https://dpubstatic.udache.com/static/dpubimg/f11b03e0-7d70-4fc6-a1d8-fc3b91064fc0.png')
+      transition all 3s cubic-bezier(0.59, 0.01, 0.05, 1.01)
+
+</style>
+
+<script name="json">
+module.exports = {
+  component: true,
+  usingComponents: {}
+}
+</script>

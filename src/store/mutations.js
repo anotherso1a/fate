@@ -1,8 +1,9 @@
+import mpx from '@mpxjs/core'
 export default {
   setDailyWords (state, payload){
-    state.words = payload
+    mpx.set(state, 'words', payload)
   },
   setYI(state, payload){
-    state.YI = payload
+    mpx.set(state, 'YI', payload)
   }
 }

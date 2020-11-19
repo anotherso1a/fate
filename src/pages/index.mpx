@@ -1,36 +1,26 @@
 <template>
-  <!-- <navigator></navigator> -->
-  <dailyWords></dailyWords>
-  <button bindtap="handlerToCalc">测算</button>
+<yi></yi>
 </template>
 
 <script>
-import { createPage } from '@mpxjs/core'
-import Store from '../store'
-
-createPage({
-  onLoad (){
-    this.getOneWebData()
-  },
-  methods: {
-    ...Store.mapActions(['getOneWebData']),
-    handlerToCalc(){
-      wx.navigateTo({
-        url: '/pages/yi'
-      })
-    }
-  }
-})
+  import { createPage } from '@mpxjs/core'
+  createPage({
+  
+  })
 </script>
 
+<style lang="stylus">
+  
+</style>
+
 <script name="json">
-module.exports = {
-  navigationBarBackgroundColor: '#ffffff',
-  navigationBarTextStyle: 'black',
-  navigationBarTitleText: '首页',
-  usingComponents: {
-    dailyWords: '../components/dailyWordsCard',
-    navigator: '../components/navigator'
+  module.exports = {
+    navigationBarBackgroundColor: '#ffffff',
+    navigationBarTextStyle: 'black',
+    navigationBarTitleText: '首页',
+    navigationStyle: 'custom',
+    usingComponents: {
+      yi: '../components/yi'
+    }
   }
-}
 </script>

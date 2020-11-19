@@ -60,41 +60,49 @@ export const BAGUA = [
   {
     "text": "坤",
     "code": "000",
+    "deg": 315,
     "value": "☷"
   },
   {
     "text": "震",
     "code": "001",
+    "deg": 135,
     "value": "☳"
   },
   {
     "text": "坎",
     "code": "010",
+    "deg": 180,
     "value": "☵"
   },
   {
     "text": "兑",
     "code": "011",
+    "deg": 45,
     "value": "☱"
   },
   {
     "text": "艮",
     "code": "100",
+    "deg": 90,
     "value": "☶"
   },
   {
     "text": "离",
     "code": "101",
+    "deg": 360,
     "value": "☲"
   },
   {
     "text": "巽",
     "code": "110",
+    "deg": 270,
     "value": "☴"
   },
   {
     "text": "乾",
     "code": "111",
+    "deg": 225,
     "value": "☰"
   }
 ]

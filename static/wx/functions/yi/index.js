@@ -12,7 +12,11 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const guas = event.guas.reverse()
   let data = guas.map((k,i) => {
-    return GUA[k].pos[i]
+    try{
+      return GUA[k].pos[i]
+    }catch(err){
+      console.log(k, err)
+    }
   })
   return {
     data

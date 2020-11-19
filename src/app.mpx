@@ -19,7 +19,6 @@ createApp({
   {
     "pages": [
       "./pages/index",
-      "./pages/yi",
       "./pages/webview"
     ]
   }
