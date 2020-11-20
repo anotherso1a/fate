@@ -2,6 +2,10 @@
 
 > lead your fate
 
+## QRCODE
+
+![小程序码](https://dpubstatic.udache.com/static/dpubimg/nWmL6xx1mM/gh_4c26fc3f9725_344.jpg)
+
 ## Dev
 
 ```bash
