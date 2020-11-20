@@ -1,4 +1,7 @@
 // import { processOneWebData } from '@/common/utils'
+
+import { ForecastTimes } from "@/common/js/forecastTimes"
+
 // import mpx from '@mpxjs/core'
 export default {
   getOneWebData ({ commit }){
@@ -18,6 +21,7 @@ export default {
       }
     }).then(res => {
       commit('setYI', res.result.data)
+      new ForecastTimes().record() // 记录测算次数
     }).catch(console.error)
   }
 }

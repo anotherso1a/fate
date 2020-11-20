@@ -1,26 +1,33 @@
 <template>
-<yi></yi>
+  <yi></yi>
+  <!-- <adv></adv> -->
 </template>
 
 <script>
-  import { createPage } from '@mpxjs/core'
-  createPage({
-  
-  })
-</script>
-
-<style lang="stylus">
-  
-</style>
-
-<script name="json">
-  module.exports = {
-    navigationBarBackgroundColor: '#ffffff',
-    navigationBarTextStyle: 'black',
-    navigationBarTitleText: '首页',
-    navigationStyle: 'custom',
-    usingComponents: {
-      yi: '../components/yi'
+import { createPage } from '@mpxjs/core'
+import { ForecastTimes } from '../common/js/forecastTimes'
+createPage({
+  onShareAppMessage(){
+    setTimeout(() => new ForecastTimes().reduce(), 2000)
+    return {
+      title: '快来试一试，很专业的测算小程序！',
+      path: '/pages/index'
     }
   }
+})
+</script>
+
+<style lang="stylus"></style>
+
+<script name="json">
+module.exports = {
+  navigationBarBackgroundColor: '#ffffff',
+  navigationBarTextStyle: 'black',
+  navigationBarTitleText: '首页',
+  navigationStyle: 'custom',
+  usingComponents: {
+    yi: '../components/yi'
+    // adv: '../components/adv'
+  }
+}
 </script>
