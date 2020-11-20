@@ -44,13 +44,18 @@ createComponent({
         let requestParam = this.topList.map((e, i) => {
           return `${this.bottomList[i]}下${e}上`
         })
-        this.calculateYI(requestParam).then(console.log)
+        this.calculateYI(requestParam).then(() => {
+          console.log('calced')
+          this.setCalcingStatus(false)
+        })
       }
     }
   },
   methods: {
     ...Store.mapActions(['calculateYI']),
+    ...Store.mapMutations(['setCalcingStatus']),
     start(){
+      this.setCalcingStatus(true)
       this.handlerStart()
     },
     handlerStart(){
@@ -85,6 +90,7 @@ createComponent({
   margin-top 100rpx
   position relative
   wh(600rpx, 600rpx)
+  overflow hidden
   .backContain
     wh(600rpx, 600rpx)
     background-size 100% 100%

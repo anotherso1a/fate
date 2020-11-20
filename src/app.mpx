@@ -13,6 +13,8 @@ createApp({
 
 <style lang="stylus">
   /*此处编写全局样式*/
+page
+  user-select none
 </style>
 
 <script type="application/json">
