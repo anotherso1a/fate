@@ -79,7 +79,7 @@ createComponent({
         this.rotateOut += 360 - this.rotateOut % 360 + outDeg
         this.rotateInner -= this.rotateOut % 360 + 720 - innerDeg
       }
-      setTimeout(() => {this.calcIndex++}, 3000)
+      setTimeout(() => {this.calcIndex++}, 3200)
     }
   }
 })

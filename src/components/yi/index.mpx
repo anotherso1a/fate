@@ -14,7 +14,7 @@
       <view class="resultContain">
         <view wx:for="{{textList}}" class="resultItem" wx:key="index">{{item}}</view>
       </view>
-      <view class="transBtn" bindtap="handlerTrans">点击查看{{trans ? '原文' : '注解'}}</view>
+      <button open-type="getUserInfo" class="transBtn" bindgetuserinfo="handlerTrans">点击查看{{trans ? '原文' : '注解'}}</button>
     </block>
     <animation-container wx:ref="alert" animationType="scale-back" bindclicklayer="handlerClose">
       <view class="alertContain">
@@ -23,7 +23,7 @@
     </animation-container>
     <animation-container wx:ref="share" animationType="scale-back" bindclicklayer="handlerCloseShareTip">
       <view class="shareTip">
-        <view class="content">您今天的测算次数已用完，分享给好友可增加一次测算机会</view>
+        <view class="content">糟糕！机会用完了，请好友帮你助力再来哦～</view>
         <button open-type="share" bindtap="handlerCloseShareTip" class="share">分享给好友</button>
       </view>
     </animation-container>
@@ -185,6 +185,7 @@ createComponent({
     opacity 0
   &.fadedIn
     .bagua
+      transform-origin center
       animation shake-hard 100ms ease-in-out infinite, fade-in 3s ease 1
       animation-fill-mode forwards
     .startBtn
@@ -234,6 +235,10 @@ createComponent({
     margin 12rpx 0
 .transBtn
   wh(500rpx, 100rpx)
+  padding 0
+  margin 0
+  background-color transparent
+  border-radius 0
   line-height 100rpx
   text-align center
   font-weight bolder

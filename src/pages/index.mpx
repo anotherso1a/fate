@@ -6,11 +6,21 @@
 <script>
 import { createPage } from '@mpxjs/core'
 import { ForecastTimes } from '../common/js/forecastTimes'
+
+const titleMap = [
+  '快来试一试，很专业的测算小程序！',
+  '有缘人，我看你印堂发光，要有好事发生啊',
+  '大吉之兆！大吉之兆！',
+  '今天不来它一卦？',
+  '让小道我给您算上一卦，不准不要钱！',
+  '球球了，帮我点一下吧'
+]
 createPage({
   onShareAppMessage(){
     setTimeout(() => new ForecastTimes().reduce(), 2000)
     return {
-      title: '快来试一试，很专业的测算小程序！',
+      title: titleMap[Math.floor(titleMap.length * Math.random())],
+      imageUrl: 'https://dpubstatic.udache.com/static/dpubimg/f354a68b-0cfb-42b1-9ed2-a0331312783e.png',
       path: '/pages/index'
     }
   }
